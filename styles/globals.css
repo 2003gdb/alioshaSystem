@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    /* Converted to Hexadecimal: */
+    --background: #EB7335; /* fondo blanco */
+    --foreground: #0A0A0A; /* texto casi negro */
+    --card: #FFFFFF; /* fondo de tarjetas blanco */
+    --card-foreground: #0A0A0A; /* texto en tarjetas oscuro */
+    --popover: #FFFFFF; /* fondo de popover blanco */
+    --popover-foreground: #0A0A0A; /* texto en popover oscuro */
+    --primary: #171717; /* color principal oscuro */
+    --primary-foreground: #FAFAFA; /* texto claro sobre fondo primario */
+    --secondary: #F5F5F5; /* color secundario (gris claro) - approx */
+    --secondary-foreground: #171717; /* texto oscuro en fondo secundario */
+    --muted: #F5F5F5; /* gris suave - approx */
+    --muted-foreground: #737373; /* texto gris medio - approx */
+    --accent: #F5F5F5; /* acento gris claro - approx */
+    --accent-foreground: #171717; /* texto oscuro sobre acento */
+    --destructive: #F95D5D; /* rojo para acciones destructivas - approx */
+    --destructive-foreground: #FAFAFA; /* texto blanco sobre destructivo */
+    --border: #E5E5E5; /* bordes gris muy claro - approx */
+    --input: #E5E5E5; /* fondo de inputs gris claro - approx */
+    --ring: #0A0A0A; /* anillos de foco oscuro */
+    --chart-1: #EB7335; /* naranja vibrante - approx */
+    --chart-2: #298B8B; /* verde azulado - approx */
+    --chart-3: #274B63; /* azul profundo - approx */
+    --chart-4: #F5B94D; /* amarillo cálido - approx */
+    --chart-5: #F1804F; /* naranja intenso - approx */
+    --radius: 0.5rem; /* radio de borde estándar - NOT a color, remains unchanged */
+    --sidebar-background: #FAFAFA; /* fondo sidebar blanco hueso */
+    --sidebar-foreground: #404047; /* texto sidebar gris oscuro - approx */
+    --sidebar-primary: #19191B; /* énfasis primario sidebar (very dark) - approx */
+    --sidebar-primary-foreground: #FAFAFA; /* texto claro sobre primario */
+    --sidebar-accent: #F4F4F5; /* acento sidebar gris claro - approx */
+    --sidebar-accent-foreground: #19191B; /* texto oscuro sobre acento - approx */
+    --sidebar-border: #E6E8ED; /* bordes sidebar gris claro - approx */
+    --sidebar-ring: #3B82F6; /* anillo de enfoque azul brillante - approx */
+  }
+  .dark {    /* Converted to Hexadecimal: */
+    --background: #0A0A0A;
+    --foreground: #FAFAFA;
+    --card: #0A0A0A;
+    --card-foreground: #FAFAFA;
+    --popover: #0A0A0A;
+    --popover-foreground: #FAFAFA;
+    --primary: #FAFAFA;
+    --primary-foreground: #171717;
+    --secondary: #262626; /* approx */
+    --secondary-foreground: #FAFAFA;
+    --muted: #262626; /* approx */
+    --muted-foreground: #A3A3A3; /* approx */
+    --accent: #262626; /* approx */
+    --accent-foreground: #FAFAFA;
+    --destructive: #C02626; /* approx */
+    --destructive-foreground: #FAFAFA;
+    --border: #262626; /* approx */
+    --input: #262626; /* approx */
+    --ring: #D4D4D4; /* approx */
+    --chart-1: #2672CC; /* approx */
+    --chart-2: #2EAD71; /* approx */
+    --chart-3: #E08A29; /* approx */
+    --chart-4: #B452E0; /* approx */
+    --chart-5: #EA4C7F; /* approx */
+    --sidebar-background: #19191B; /* approx */
+    --sidebar-foreground: #F4F4F5; /* approx */
+    --sidebar-primary: #2563EB; /* approx */
+    --sidebar-primary-foreground: #FFFFFF;
+    --sidebar-accent: #27272A; /* approx */
+    --sidebar-accent-foreground: #F4F4F5; /* approx */
+    --sidebar-border: #27272A; /* approx */
+    --sidebar-ring: #3B82F6; /* approx */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
