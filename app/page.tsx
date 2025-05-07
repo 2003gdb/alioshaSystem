@@ -1,9 +1,9 @@
-import SoftwareHero from "@/components/software-hero"
+import HeroSection from "@/components/hero-section"
 
 export default function Home() {
   return (
     <main>
-      <SoftwareHero />
+      <HeroSection />
     </main>
   )
 }
