@@ -7,11 +7,11 @@ import ServicesCarousel from "@/components/services"
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-lightBackground py-10 md:py-10">
+    <section className="relative w-full overflow-hidden bg-lightBackground pt-10 pb-30">
       {/* Background Grid */}
       <div className="absolute inset-0 z-10">
         <InteractiveGridPattern
-          className="opacity-60 [mask-image:radial-gradient(700px_circle_at_center,white,transparent)]"
+          className="opacity-60 [mask-image:radial-gradient(1000px_circle_at_center,white,transparent)] md:[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]"
           squaresClassName="stroke-gray-800/30 hover:fill-alioshaBlue"
         />
       </div>

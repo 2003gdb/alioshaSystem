@@ -58,7 +58,7 @@ export default function ServicesCarousel() {
   };
 
   return (
-    <div className="container relative mx-auto mt-24 px-4 sm:px-16">
+    <div className="container relative mx-auto px-4 sm:px-16">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         <AnimatePresence mode="wait">
           {getCurrentServices().map((service, index) => (
@@ -78,20 +78,6 @@ export default function ServicesCarousel() {
             </motion.div>
           ))}
         </AnimatePresence>
-      </div>
-
-      {/* Pagination dots */}
-      <div className="mt-12 flex justify-center gap-2">
-        {Array.from({ length: groupCount }).map((_, i) => (
-          <button
-            key={i}
-            className={`h-2 w-2 rounded-full ${
-              i === currentGroup ? "bg-gray-800" : "bg-gray-300"
-            } transition-all duration-300`}
-            onClick={() => setCurrentGroup(i)}
-            aria-label={`Go to service group ${i + 1}`}
-          />
-        ))}
       </div>
     </div>
   );
