@@ -1,5 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pattern"
 import ServicesCarousel from "@/components/services" 
 
@@ -23,9 +24,11 @@ export default function SoftwareHero() {
             maximum efficiency.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Button size="lg" className="z-10 h-12 px-8 bg-black text-white hover:bg-gray-900 border border-gray-800">
-              DOWNLOAD
-            </Button>
+            <Link href="/contact" className="z-10">
+              <Button size="lg" className="h-12 px-8 bg-black text-white hover:bg-white/50 hover:text-black">
+                CONTACT US
+              </Button>
+            </Link>
             <Button size="lg" variant="outline" className="z-10 h-12 px-8 border-gray-800 hover:bg-gray-100">
               LEARN MORE
             </Button>

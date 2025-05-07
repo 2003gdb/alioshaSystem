@@ -1,10 +1,10 @@
 import type React from "react"
 import { aldrich, oxanium } from "./fonts"
-import "./globals.css"
+import "@/styles/globals.css"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Aliosha Systems",
+  title: "Aliosha System",
   description: "Building blocks. Streamlined, secure, and designed for maximum efficiency."
 }
 
