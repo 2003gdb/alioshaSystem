@@ -59,7 +59,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-lightBackground px-05 md:py-20 md:px-30 text-alioshaBlack">
+    <section className="relative w-full min-h-screen bg-lightBackground px-05 py-10 md:py-20 md:px-30 text-alioshaBlack">
       <div className="container mx-auto px-4">
           <div className="text-center py-10">
             <h2 className="text-4xl font-semibold mb-2">Ponte en Contacto</h2>
@@ -83,7 +83,7 @@ export default function ContactForm() {
                 <p>Ciudad de México, CDMX<br />México</p>
               </div>
             </div>
-            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
               <BorderBeam
                 duration={4}
                 size={400}
@@ -178,7 +178,7 @@ export default function ContactForm() {
                 )}
               </Button>
             </form>
-            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
               <BorderBeam
                 duration={4}
                 size={300}
