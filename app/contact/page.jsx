@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { Mail, Phone, Globe, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { BorderBeam } from "@/components/magicui/border-beam";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -57,15 +59,15 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-lightBackground py-20 text-alioshaBlack">
+    <section className="relative w-full min-h-screen bg-lightBackground px-05 md:py-20 md:px-30 text-alioshaBlack">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-semibold">Ponte en Contacto</h2>
-          <p className="text-base text-alioshaGrayDark">Contáctanos para comenzar tu proyecto</p>
-        </div>
+          <div className="text-center py-10">
+            <h2 className="text-4xl font-semibold mb-2">Ponte en Contacto</h2>
+            <p className="text-base text-alioshaGrayDark">Contáctanos para comenzar tu proyecto</p>
+          </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="border border-alioshaGrayLight p-6">
+          <div className="relative p-6 border border-alioshaGrayLight group hover:border-alioshaGrayLight/30 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,0,0,0.1)]">
             <h3 className="text-xl font-semibold mb-6">Información de Contacto</h3>
             <div className="space-y-6 text-sm">
               <div className="flex items-start">
@@ -81,13 +83,20 @@ export default function ContactForm() {
                 <p>Ciudad de México, CDMX<br />México</p>
               </div>
             </div>
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <BorderBeam
+                duration={4}
+                size={400}
+                className="from-transparent via-yellow-500 to-transparent md:size-[500px]"
+              />
+            </div>
           </div>
 
-          <div className="md:col-span-2 border border-alioshaGrayLight p-6 bg-white">
+          <div className="md:col-span-2 relative border border-alioshaGrayLight p-6 bg-white group hover:border-alioshaGrayLight/30 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,0,0,0.1)]">
             <form onSubmit={handleSubmit} className="space-y-6 text-sm">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="name" className="block mb-1 font-medium">Nombre</label>
+                  <label htmlFor="name" className="block mb-1 font-big">Nombre</label>
                   <input
                     type="text"
                     id="name"
@@ -169,6 +178,13 @@ export default function ContactForm() {
                 )}
               </Button>
             </form>
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <BorderBeam
+                duration={4}
+                size={300}
+                className="from-transparent via-alioshaRed to-transparent md:size-[1000px]"
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -16,9 +16,7 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Content */}
       <div className="container relative mx-auto px-4 md:px-6">
-        {/* Logo */}
         <div className="flex justify-center">
           <Image
             src="/mainLogo.png"

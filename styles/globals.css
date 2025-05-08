@@ -18,6 +18,11 @@
     font-family: var(--font-aldrich), "Aldrich", sans-serif;
     letter-spacing: 0.025em;
   }
+  input, label, textarea, button {
+    font-family: var(--font-aldrich), "Aldrich", sans-serif;
+  }
+
+
 }
 
 
