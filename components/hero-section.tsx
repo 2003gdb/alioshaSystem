@@ -7,7 +7,7 @@ import ServicesCarousel from "@/components/services"
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-lightBackground pt-10 pb-28">
+    <section className="relative w-full overflow-hidden bg-lightBackground pt-10 pb-40">
       {/* Background Grid */}
       <div className="absolute inset-0 z-10">
         <InteractiveGridPattern
