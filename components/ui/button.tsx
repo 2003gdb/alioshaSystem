@@ -9,14 +9,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-alioshaBlack text-alioshaWhite hover:bg-transparent hover:text-alioshaWhite hover:bg-alioshaRed/80 ",
+          "rounded-md bg-alioshaBlack text-alioshaWhite hover:bg-transparent hover:text-alioshaWhite hover:bg-alioshaRed/80 ",
         yellow:
-          "border border-alioshaGrayDark bg-transparent text-alioshaBlack hover:bg-alioshaYellow/80 hover:text-alioshaWhite hover:border-transparent",
+          "rounded-md border border-alioshaGrayDark bg-transparent text-alioshaBlack hover:bg-alioshaYellow/80 hover:text-alioshaWhite hover:border-transparent",
         blue:
-          "bg-alioshaBlue text-alioshaWhite hover:bg-alioshaBlue/80 hover:scale-105",
-        ghost:
-          "text-alioshaGray hover:bg-alioshaGray/10 hover:text-alioshaWhite",
-        link: "text-alioshaYellow underline-offset-4 hover:underline hover:text-alioshaWhite",
+          "bg-alioshaBlue text-alioshaWhite hover:bg-alioshaBlue/80 hover:scale-105"
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -68,7 +68,7 @@ export default function ServicesCarousel() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="rounded-none bg-white border border-black p-4 transition-all duration-300 hover:border-gray-600"
+              className="rounded-sm bg-white border border-black p-4 transition-all duration-300 hover:border-gray-600"
             >
               <div className="z-10 mb-4 flex h-12 w-12 items-center justify-center rounded-full">
                 {service.icon}
