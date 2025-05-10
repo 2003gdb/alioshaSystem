@@ -16,7 +16,7 @@ export default function HeroSection() {
         />
       </div>
 
-      <div className="container relative mx-auto h-full flex flex-col">
+      <div className="container relative mx-auto h-full flex flex-col p-6">
         <div className="flex-[0.6]" />
         <div className="flex justify-center">
           <Image
