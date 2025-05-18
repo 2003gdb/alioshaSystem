@@ -4,8 +4,9 @@ import React, { useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
 const NAV_LINKS = [
-  { label: 'Solutions', href: '#' },
+  { label: 'Solutions', href: '/' },
   { label: 'Contact Us', href: '/contact' },
+  { label: 'Portafolio', href: '/portafolio' },
 ];
 
 const LANGUAGES = [
