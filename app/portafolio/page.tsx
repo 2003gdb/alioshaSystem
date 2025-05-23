@@ -1,11 +1,10 @@
 import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pattern";
-import Image from "next/image";
 import Navbar from "@/components/ui/Navbar"
 
 const works = [
   {
     title: "True Hughes BBQ",
-    image: "/portafolio/truehughesbbq.png", // Place your image in public/portafolio/
+    image: "/portafolio/truehughesbbq.png", 
     description: "From our family to yours, we hope you enjoy every bite!",
     link: "https://truehughesbbq.com",
     linkLabel: "truehughesbbq.com",
@@ -34,14 +33,12 @@ export default function PortfolioPage() {
             {work.description}
           </p>
         </div>
-        <div className="relative w-full max-w-5xl aspect-[16/10] rounded-xl overflow-hidden shadow-2xl border-2 border-alioshaGrayDark">
-          <Image
-            src={work.image}
-            alt={work.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 90vw, 1200px"
-            priority
+        <div className="relative w-full max-w-[1400px] aspect-[16/10] rounded-xl overflow-hidden shadow-2xl border-2 border-alioshaGrayDark">
+          <iframe
+            src={work.link}
+            title={work.title}
+            className="w-full h-full absolute inset-0 border-0 rounded-xl"
+            allowFullScreen
           />
           <a
             href={work.link}

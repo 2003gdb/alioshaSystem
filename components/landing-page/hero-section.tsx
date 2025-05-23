@@ -29,7 +29,7 @@ export default function HeroSection() {
                 CONTACT US
               </Button>
             </Link>
-            <Link href="/contact" className="z-15">
+            <Link href="/portafolio" className="z-15">
               <Button size="lg" variant={"yellow"}>
                 PORTAFOLIO
               </Button>
