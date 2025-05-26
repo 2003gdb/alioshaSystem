@@ -45,11 +45,6 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       icon: <FileText className="h-5 w-5" />,
     },
     {
-      label: "Mensajes",
-      href: "/dashboard/messages",
-      icon: <MessageSquare className="h-5 w-5" />,
-    },
-    {
       label: "Perfil",
       href: "/dashboard/profile",
       icon: <User className="h-5 w-5" />,
