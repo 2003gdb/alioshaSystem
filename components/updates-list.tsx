@@ -13,7 +13,9 @@ import {
   Paperclip,
   Send,
   User,
+  ArrowRight,
 } from "lucide-react"
+import Link from "next/link"
 
 // Tipos para las actualizaciones y comentarios
 interface Comment {
@@ -32,6 +34,13 @@ interface Update {
   imageUrl?: string
   status: 'pending' | 'in-review' | 'approved'
   comments: Comment[]
+}
+
+interface UpdatesListProps {
+  limit?: number | null
+  showSearch?: boolean
+  title?: string
+  showDescription?: boolean
 }
 
 // Componente para un comentario individual
@@ -91,7 +100,7 @@ function CommentSection({ updateId, comments }: { updateId: number; comments: Co
             placeholder="Escribe un comentario..."
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
-            className="min-h-24 resize-none border-black"
+            className="min-h-24 resize-none border-black rounded-lg"
           />
         </div>
         <div className="flex justify-between mt-2">
@@ -121,18 +130,18 @@ function UpdateItem({ update }: { update: Update }) {
   const getStatusBadge = () => {
     switch (update.status) {
       case 'pending':
-        return <span className="px-2 py-1 text-xs bg-alioshaGrayLight text-white">Pendiente</span>
+        return <span className="px-2 py-1 text-xs bg-alioshaGrayLight text-white rounded-md">Pendiente</span>
       case 'in-review':
-        return <span className="px-2 py-1 text-xs bg-alioshaYellow text-white">En Revisión</span>
+        return <span className="px-2 py-1 text-xs bg-alioshaYellow text-white rounded-md">En Revisión</span>
       case 'approved':
-        return <span className="px-2 py-1 text-xs bg-green-600 text-white">Aprobado</span>
+        return <span className="px-2 py-1 text-xs bg-green-600 text-white rounded-md">Aprobado</span>
       default:
         return null
     }
   }
   
   return (
-    <div className="border border-black p-4 mb-6">
+    <div className="border border-black p-4 mb-6 rounded-lg">
       <div className="flex justify-between items-start">
         <div>
           <h3 className="font-medium">{update.title}</h3>
@@ -168,7 +177,7 @@ function UpdateItem({ update }: { update: Update }) {
                 alt={update.title}
                 width={600}
                 height={400}
-                className="border border-gray-200"
+                className="border border-gray-200 rounded-lg"
                 style={{ width: '100%', height: 'auto', maxHeight: '400px', objectFit: 'contain' }}
               />
             </div>
@@ -195,7 +204,12 @@ function UpdateItem({ update }: { update: Update }) {
 }
 
 // Componente principal para la lista de actualizaciones
-export default function UpdatesList() {
+export default function UpdatesList({ 
+  limit = null, 
+  showSearch = true, 
+  title = "Actualizaciones del Proyecto",
+  showDescription = true 
+}: UpdatesListProps) {
   // Datos mock para las actualizaciones
   const updates: Update[] = [
     {
@@ -263,24 +277,41 @@ export default function UpdatesList() {
     }
   ]
 
+  // Filtrar actualizaciones según el límite
+  const displayedUpdates = limit ? updates.slice(0, limit) : updates;
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold mb-1">Actualizaciones del Proyecto</h1>
-        <p className="text-sm text-gray-500">
-          Revisa las actualizaciones recientes de tu proyecto y deja tus comentarios
-        </p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-2xl font-bold mb-1">{title}</h1>
+          {showDescription && (
+            <p className="text-sm text-gray-500">
+              Revisa las actualizaciones recientes de tu proyecto y deja tus comentarios
+            </p>
+          )}
+        </div>
+        {limit && (
+          <Link href="/dashboard/updates">
+            <Button variant="outline" size="sm">
+              Ver Todas
+              <ArrowRight className="h-4 w-4 ml-2" />
+            </Button>
+          </Link>
+        )}
       </div>
 
-      <div className="mb-6">
-        <Input
-          placeholder="Buscar actualizaciones..."
-          className="border-black"
-        />
-      </div>
+      {showSearch && (
+        <div className="mb-6">
+          <Input
+            placeholder="Buscar actualizaciones..."
+            className="border-black rounded-lg"
+          />
+        </div>
+      )}
 
       <div>
-        {updates.map(update => (
+        {displayedUpdates.map(update => (
           <UpdateItem key={update.id} update={update} />
         ))}
       </div>

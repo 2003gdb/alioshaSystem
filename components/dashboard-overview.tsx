@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import UpdatesList from "@/components/updates-list"
 import { 
   Clock, 
   Check, 
@@ -114,7 +115,7 @@ function RecentUpdate({ title, date, status, hasComments }: RecentUpdateProps) {
           )}
         </div>
         <Link href="/dashboard/updates">
-          <Button variant="outline" size="sm" className="text-xs">
+          <Button variant="default" size="sm" className="text-xs">
             Ver Detalle
             <ArrowRight className="h-3 w-3 ml-1" />
           </Button>
@@ -226,29 +227,11 @@ export default function DashboardOverview() {
         </Card>
       </div>
 
-      <div>
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-medium">Últimas Actualizaciones</h2>
-          <Link href="/dashboard/updates">
-            <Button variant="outline" size="sm">
-              Ver Todas
-              <ArrowRight className="h-4 w-4 ml-2" />
-            </Button>
-          </Link>
-        </div>
-        
-        <div>
-          {projectDetails.recentUpdates.map((update) => (
-            <RecentUpdate
-              key={update.id}
-              title={update.title}
-              date={update.date}
-              status={update.status}
-              hasComments={update.hasComments}
-            />
-          ))}
-        </div>
-      </div>
+      <UpdatesList 
+        limit={3} 
+        showSearch={false} 
+        title="Últimas Actualizaciones" 
+      />
     </div>
   )
 }

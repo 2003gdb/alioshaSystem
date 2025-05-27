@@ -18,10 +18,24 @@
     font-family: var(--font-aldrich), "Aldrich", sans-serif;
     letter-spacing: 0.025em;
   }
+  
+  /* Input focus styles */
+  input:focus {
+    outline: none;
+  }
   input, label, textarea, button, a {
     font-family: var(--font-aldrich), "Aldrich", sans-serif;
+
   }
-
+  
+  /* Loading spinner animation */
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
 }
-
-
