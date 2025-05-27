@@ -7,14 +7,14 @@ import Image from "next/image";
 // Mock data - replace with actual API calls
 const mockUserData = {
   id: "1",
-  name: "Carlos Mendoza",
-  email: "carlos.mendoza@example.com",
+  name: "Carlos Galvez",
+  email: "carlos.galvez@example.com",
   phone: "+52 55 1234 5678",
   position: "Senior Developer",
   department: "Tecnología",
   location: "Ciudad de México, México",
   joinDate: "2023-03-15",
-  avatar: "/api/placeholder/150/150"
+  avatar: "/carlos.png"
 };
 
 // API functions - replace with actual implementations
