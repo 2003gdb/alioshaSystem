@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { label: 'Solutions', href: '/' },
   { label: 'Contact Us', href: '/contact' },
   { label: 'Portafolio', href: '/portafolio' },
+  { label: 'My Account', href: '/login' },
 ];
 
 const LANGUAGES = [
