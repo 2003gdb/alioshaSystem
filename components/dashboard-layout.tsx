@@ -82,8 +82,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="text-sm font-medium">Cliente</div>
               <div className="text-xs text-gray-500">cliente@ejemplo.com</div>
             </div>
-            
-            <Button variant="ghost" size="icon">
+            <Button size="icon">
               <Link href="/login">
                 <LogOut className="h-5 w-5" />
               </Link>
