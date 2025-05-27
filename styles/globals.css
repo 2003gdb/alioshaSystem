@@ -23,6 +23,10 @@
   input:focus {
     outline: none;
   }
+  input, label, textarea, button, a {
+    font-family: var(--font-aldrich), "Aldrich", sans-serif;
+
+  }
   
   /* Loading spinner animation */
   @keyframes spin {

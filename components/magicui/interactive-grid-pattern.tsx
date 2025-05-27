@@ -30,7 +30,7 @@ interface InteractiveGridPatternProps extends React.SVGProps<SVGSVGElement> {
 export function InteractiveGridPattern({
   width = 80,
   height = 80,
-  squares = [25, 25],
+  squares = [30, 30],
   className,
   squaresClassName,
   ...props

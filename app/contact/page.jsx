@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Mail, Phone, Globe, ArrowRight, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Navbar from "@/components/ui/Navbar"
 import { FormInput, FormTextarea } from "@/components/ui/form-input";
 import { BorderBeam } from "@/components/magicui/border-beam";
 
@@ -60,6 +61,7 @@ export default function ContactForm() {
 
   return (
     <section className="relative w-full min-h-screen bg-lightBackground px-05 py-10 md:py-20 md:px-30 text-alioshaBlack">
+      <Navbar />
       <div className="container mx-auto px-4">
         <div className="text-center py-10">
           <h2 className="text-4xl font-semibold mb-2">Ponte en Contacto</h2>
@@ -72,11 +74,11 @@ export default function ContactForm() {
             <div className="space-y-6 text-sm">
               <div className="flex items-start">
                 <Mail className="h-5 w-5 mr-3" />
-                <a href="mailto:contacto@alioshasystem.com" className="hover:text-alioshaYellow">contacto@alioshasystem.com</a>
+                <p href="mailto:contacto@alioshasystem.com" className="hover:text-alioshaYellow">contacto@alioshasystem.com</p>
               </div>
               <div className="flex items-start">
                 <Phone className="h-5 w-5 mr-3" />
-                <a href="tel:+524433381082" className="hover:text-alioshaYellow">+52 (443) 338-1082</a>
+                <p href="tel:+524433381082" className="hover:text-alioshaYellow">+52 (443) 338-1082</p>
               </div>
               <div className="flex items-start">
                 <Globe className="h-5 w-5 mr-3" />

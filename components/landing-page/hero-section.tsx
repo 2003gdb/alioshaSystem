@@ -2,20 +2,11 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
-import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pattern"
 import ServicesCarousel from "@/components/landing-page/services"
 
 export default function HeroSection() {
   return (
     <section className="w-full h-screen relative overflow-hidden bg-lightBackground">
-      {/* Background Grid */}
-      <div className="absolute inset-0 z-10">
-        <InteractiveGridPattern
-          className="opacity-60 [mask-image:radial-gradient(1400px_circle_at_center,transparent,white)]"
-          squaresClassName="stroke-gray-800/30 hover:fill-alioshaBlue"
-        />
-      </div>
-
       <div className="container relative mx-auto h-full flex flex-col p-6">
         <div className="flex-[0.6]" />
         <div className="flex justify-center">
@@ -38,7 +29,7 @@ export default function HeroSection() {
                 CONTACT US
               </Button>
             </Link>
-            <Link href="/contact" className="z-15">
+            <Link href="/portafolio" className="z-15">
               <Button size="lg" variant={"yellow"}>
                 PORTAFOLIO
               </Button>
