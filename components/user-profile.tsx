@@ -8,7 +8,7 @@ import Image from "next/image";
 const mockUserData = {
   id: "1",
   name: "Carlos Galvez",
-  email: "carlos.galvez@example.com",
+  email: "carlos.galvez@examplee.com",
   phone: "+52 55 1234 5678",
   position: "Senior Developer",
   department: "Tecnología",
