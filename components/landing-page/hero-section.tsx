@@ -6,7 +6,7 @@ import ServicesCarousel from "@/components/landing-page/services"
 
 export default function HeroSection() {
   return (
-    <section className="w-full h-screen relative overflow-hidden bg-lightBackground">
+    <section className="w-full h-screen relative overflow-hidden bg-alioshaWhite">
       <div className="container relative mx-auto h-full flex flex-col p-6">
         <div className="flex-[0.6]" />
         <div className="flex justify-center">
@@ -19,9 +19,9 @@ export default function HeroSection() {
           />
         </div>
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="mb-6 text-5xl md:text-6xl leading-tight tracking-tight">Aliosha System</h1>
+          <h1 className=" text-5xl md:text-6xl leading-tight tracking-tight">Aliosha System</h1>
           <p className="mb-10 text-xl">
-            Building blocks. Streamlined, secure, and designed for maximum efficiency.
+            Building blocks.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/contact" className="z-15">

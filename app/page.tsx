@@ -8,7 +8,7 @@ export default function Home() {
       <div className="absolute inset-0 z-10">
         <InteractiveGridPattern
           className="opacity-60 [mask-image:radial-gradient(1400px_circle_at_center,transparent,white)]"
-          squaresClassName="stroke-gray-800/30 hover:fill-alioshaBlue"
+          squaresClassName="stroke-gray-800/30"
         />
       </div>
       <Navbar />

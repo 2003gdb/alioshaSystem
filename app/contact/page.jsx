@@ -60,12 +60,12 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-lightBackground px-05 py-10 md:py-20 md:px-30 text-alioshaBlack">
+    <section className="relative w-full min-h-screen bg-alioshaWhite px-05 py-10 md:py-20 md:px-30 text-alioshaBlack">
       <Navbar />
       <div className="container mx-auto px-4">
         <div className="text-center py-10">
           <h2 className="text-4xl font-semibold mb-2">Ponte en Contacto</h2>
-          <p className="text-base text-alioshaGrayDark">Contáctanos para comenzar tu proyecto</p>
+          <p className="text-base text-alioshaBlack">Contáctanos para comenzar tu proyecto</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

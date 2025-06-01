@@ -28,8 +28,8 @@ interface InteractiveGridPatternProps extends React.SVGProps<SVGSVGElement> {
  * @returns A React component.
  */
 export function InteractiveGridPattern({
-  width = 80,
-  height = 80,
+  width = 150,
+  height = 150,
   squares = [30, 30],
   className,
   squaresClassName,
@@ -37,6 +37,23 @@ export function InteractiveGridPattern({
 }: InteractiveGridPatternProps) {
   const [horizontal, vertical] = squares
   const [hoveredSquare, setHoveredSquare] = useState<number | null>(null)
+  const [squareColors, setSquareColors] = useState<{ [key: number]: string }>({})
+
+  const colors = ['fill-alioshaBlue', 'fill-alioshaRed', 'fill-alioshaYellow']
+
+  const getRandomColor = () => {
+    return colors[Math.floor(Math.random() * colors.length)]
+  }
+
+  const handleMouseEnter = (index: number) => {
+    setHoveredSquare(index)
+    if (!squareColors[index]) {
+      setSquareColors(prev => ({
+        ...prev,
+        [index]: getRandomColor()
+      }))
+    }
+  }
 
   return (
     <svg
@@ -57,10 +74,12 @@ export function InteractiveGridPattern({
             height={height}
             className={cn(
               "stroke-gray-800/20 transition-all duration-100 ease-in-out [&:not(:hover)]:duration-1000",
-              hoveredSquare === index ? "fill-gray-800/5" : "fill-transparent",
+              hoveredSquare === index && squareColors[index] 
+                ? squareColors[index] 
+                : "fill-transparent",
               squaresClassName,
             )}
-            onMouseEnter={() => setHoveredSquare(index)}
+            onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => setHoveredSquare(null)}
           />
         )

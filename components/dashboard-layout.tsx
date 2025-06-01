@@ -52,7 +52,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   ]
 
   return (
-    <div className="min-h-screen bg-lightBackground flex flex-col">
+    <div className="min-h-screen bg-alioshaWhite flex flex-col">
       {/* Header */}
       <header className="bg-white border-b border-black h-16 flex items-center px-4 md:px-6">
         <div className="w-full flex justify-between items-center">
