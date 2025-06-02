@@ -18,8 +18,7 @@ const buttonVariants = cva(
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 px-3",
-        lg: "h-12 px-8 ",
-        icon: "h-10 w-10",
+        lg: "h-12 px-8"
       },
     },
     defaultVariants: {
@@ -33,17 +32,43 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
+  hoverIcon?: React.ComponentType<{ className?: string }>
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, children, hoverIcon, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
+    const hasHoverIcon = !!hoverIcon
+
+    if (hasHoverIcon && hoverIcon) {
+      const HoverIconComponent = hoverIcon
+      
+      return (
+        <Comp
+          className={cn(
+            buttonVariants({ variant, size }),
+            "overflow-hidden [&:hover_.hover-icon]:w-5 [&:hover_.hover-icon]:opacity-100 [&:hover_.hover-icon]:mr-1 pl-4 pr-2",
+            className
+          )}
+          ref={ref}
+          {...props}
+        >
+          {children}
+          <div className="hover-icon w-0 opacity-0 transition-all duration-400 ml-2">
+            <HoverIconComponent className="h-8 w-8" />
+          </div>
+        </Comp>
+      )
+    }
+
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
-      />
+      >
+        {children}
+      </Comp>
     )
   }
 )

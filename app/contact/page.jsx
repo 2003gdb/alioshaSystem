@@ -152,22 +152,21 @@ export default function ContactForm() {
 
               <Button
                 type="submit"
-                size="lg"
                 disabled={status.loading}
-                className="text-md"
+                size="lg"
+                variant="default"
+                hoverIcon={ArrowRight}
               >
                 {status.loading ? (
-                  <span className="flex items-center">
+                  <>
                     <svg className="animate-spin mr-2 h-5 w-5" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
                     Enviando...
-                  </span>
+                  </>
                 ) : (
-                  <span className="flex items-center">
-                    Enviar Mensaje <ArrowRight className="ml-2 h-5 w-5" />
-                  </span>
+                  "Enviar Mensaje"
                 )}
               </Button>
             </form>
