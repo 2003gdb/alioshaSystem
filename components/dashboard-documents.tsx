@@ -38,7 +38,7 @@ function getFileIcon(type: string, size: string = "h-8 w-8") {
   } else if (mimeType.includes('doc') || mimeType.includes('txt')) {
     return <FileText className={`${size} text-alioshaYellow`} />
   } else {
-    return <File className={`${size} text-alioshaGrayDark`} />
+    return <File className={`${size} text-alioshaBlack`} />
   }
 }
 

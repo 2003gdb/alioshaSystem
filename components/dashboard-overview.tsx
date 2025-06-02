@@ -29,7 +29,7 @@ function ProjectStatus({ value, status }: ProjectStatusProps) {
       case 'delayed':
         return 'text-alioshaRed'
       default:
-        return 'text-alioshaGrayDark'
+        return 'text-alioshaBlack'
     }
   }
 

@@ -60,12 +60,12 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-lightBackground px-05 py-10 md:py-20 md:px-30 text-alioshaBlack">
+    <section className="relative w-full min-h-screen bg-alioshaWhite px-05 py-10 md:py-20 md:px-30 text-alioshaBlack">
       <Navbar />
       <div className="container mx-auto px-4">
         <div className="text-center py-10">
           <h2 className="text-4xl font-semibold mb-2">Ponte en Contacto</h2>
-          <p className="text-base text-alioshaGrayDark">Contáctanos para comenzar tu proyecto</p>
+          <p className="text-base text-alioshaBlack">Contáctanos para comenzar tu proyecto</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -152,22 +152,21 @@ export default function ContactForm() {
 
               <Button
                 type="submit"
-                size="lg"
                 disabled={status.loading}
-                className="text-md"
+                size="lg"
+                variant="default"
+                hoverIcon={ArrowRight}
               >
                 {status.loading ? (
-                  <span className="flex items-center">
+                  <>
                     <svg className="animate-spin mr-2 h-5 w-5" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
                     Enviando...
-                  </span>
+                  </>
                 ) : (
-                  <span className="flex items-center">
-                    Enviar Mensaje <ArrowRight className="ml-2 h-5 w-5" />
-                  </span>
+                  "Enviar Mensaje"
                 )}
               </Button>
             </form>
