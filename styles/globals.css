@@ -1,15 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-alioshaBlack: #0A0A0A;
-  --color-lightBackground: #FFFFFF;
-  --color-alioshaWhite: #F1FAEE;
-  --color-alioshaGrayDark: #1d1d1d;
+  --color-alioshaBlack: #1d1d1d;
+  --color-alioshaWhite: #FFFFFF;
+  --color-alioshaWhite-Green: #F1FAEE;
   --color-alioshaGrayLight: #a8a8a8;
   --color-alioshaRed: #e63740;
   --color-alioshaYellow: #e59901;
   --color-alioshaBlue: #336685;
-  --color-alioshaTeal: #298B8B;
 }
 
 @layer base {
@@ -18,10 +16,24 @@
     font-family: var(--font-aldrich), "Aldrich", sans-serif;
     letter-spacing: 0.025em;
   }
+  
+  /* Input focus styles */
+  input:focus {
+    outline: none;
+  }
   input, label, textarea, button, a {
     font-family: var(--font-aldrich), "Aldrich", sans-serif;
+
   }
-
+  
+  /* Loading spinner animation */
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
 }
-
-
