@@ -6,9 +6,9 @@ import ServicesCarousel from "@/components/landing-page/services"
 
 export default function HeroSection() {
   return (
-    <section className="w-full h-screen relative overflow-hidden bg-alioshaWhite">
-      <div className="container relative mx-auto h-full flex flex-col p-6">
-        <div className="flex-[0.6]" />
+    <section className="w-full h-full relative overflow-hidden bg-alioshaWhite">
+      <div className="container relative mx-auto flex flex-col p-6">
+        <div className="flex-[0.6] mt-20" />
         <div className="flex justify-center">
           <Image
             src="/mainLogo.png"
