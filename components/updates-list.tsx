@@ -106,7 +106,7 @@ function CommentSection({ updateId, comments }: { updateId: number; comments: Co
         <div className="flex justify-between mt-2">
           <Button
             type="button"
-            variant="ghost"
+            variant="default"
             size="sm"
             className="text-gray-500"
           >
@@ -153,7 +153,7 @@ function UpdateItem({ update }: { update: Update }) {
         <div className="flex items-center gap-2">
           {getStatusBadge()}
           <Button
-            variant="ghost"
+            variant="default"
             size="icon"
             onClick={() => setIsExpanded(!isExpanded)}
           >
@@ -293,7 +293,7 @@ export default function UpdatesList({
         </div>
         {limit && (
           <Link href="/dashboard/updates">
-            <Button variant="outline" size="sm">
+            <Button variant="default" size="sm">
               Ver Todas
               <ArrowRight className="h-4 w-4 ml-2" />
             </Button>
