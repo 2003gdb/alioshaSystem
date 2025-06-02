@@ -7,7 +7,7 @@ export default function Home() {
     <main>
       <div className="absolute inset-0 z-10">
         <InteractiveGridPattern
-          className="opacity-60 [mask-image:radial-gradient(1400px_circle_at_center,transparent,white)]"
+          className="opacity-60 sm:[mask-image:radial-gradient(600px_circle_at_center,transparent,white)]"
           squaresClassName="stroke-gray-800/30"
         />
       </div>

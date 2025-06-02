@@ -40,8 +40,7 @@ export default function LoginDashboard() {
       {/* Background Grid */}
       <div className="absolute inset-0 z-10">
         <InteractiveGridPattern
-          className="opacity-60 [mask-image:radial-gradient(800px_circle_at_center,white,transparent)] md:[mask-image:radial-gradient(1400px_circle_at_center,transparent,white)]"
-          squaresClassName="stroke-gray-800/30"
+          className="sm:[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]"
         />
       </div>
 

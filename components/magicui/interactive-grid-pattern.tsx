@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 /**
  * InteractiveGridPattern is a component that renders a grid pattern with interactive squares.
@@ -23,14 +23,14 @@ interface InteractiveGridPatternProps extends React.SVGProps<SVGSVGElement> {
 
 /**
  * The InteractiveGridPattern component.
- *
  * @see InteractiveGridPatternProps for the props interface.
  * @returns A React component.
  */
+
 export function InteractiveGridPattern({
   width = 150,
   height = 150,
-  squares = [30, 30],
+  squares = [12, 12],
   className,
   squaresClassName,
   ...props
@@ -38,12 +38,52 @@ export function InteractiveGridPattern({
   const [horizontal, vertical] = squares
   const [hoveredSquare, setHoveredSquare] = useState<number | null>(null)
   const [squareColors, setSquareColors] = useState<{ [key: number]: string }>({})
+  const [autoSquares, setAutoSquares] = useState<{ [key: number]: string }>({})
 
   const colors = ['fill-alioshaBlue', 'fill-alioshaRed', 'fill-alioshaYellow']
 
   const getRandomColor = () => {
     return colors[Math.floor(Math.random() * colors.length)]
   }
+
+  const getRandomSquareIndex = () => {
+    return Math.floor(Math.random() * (horizontal * vertical))
+  }
+
+  // Auto-spark random squares with random timing for more organic feel
+  useEffect(() => {
+    const sparkSquare = () => {
+      // Spark 1-3 squares at once for more noticeable effect
+      const numSquares = Math.floor(Math.random() * 10) + 3
+      
+      for (let i = 0; i < numSquares; i++) {
+        const randomIndex = getRandomSquareIndex()
+        const randomColor = getRandomColor()
+        
+        setAutoSquares(prev => ({
+          ...prev,
+          [randomIndex]: randomColor
+        }))
+
+        // Remove each square after a random duration (1-3 seconds)
+        const fadeDelay = Math.random() * 2000 + 1000
+        setTimeout(() => {
+          setAutoSquares(prev => {
+            const newState = { ...prev }
+            delete newState[randomIndex]
+            return newState
+          })
+        }, fadeDelay)
+      }
+      
+      // Schedule next spark with random interval (1-4 seconds)
+      const nextInterval = Math.random() * 3000 + 1000
+      setTimeout(sparkSquare, nextInterval)
+    }
+
+    // Start the sparking
+    sparkSquare()
+  }, [horizontal, vertical])
 
   const handleMouseEnter = (index: number) => {
     setHoveredSquare(index)
@@ -53,6 +93,15 @@ export function InteractiveGridPattern({
         [index]: getRandomColor()
       }))
     }
+  }
+
+  const handleMouseLeave = (index: number) => {
+    setHoveredSquare(null)
+    setSquareColors(prev => {
+      const newState = { ...prev }
+      delete newState[index]
+      return newState
+    })
   }
 
   return (
@@ -72,15 +121,21 @@ export function InteractiveGridPattern({
             y={y}
             width={width}
             height={height}
+            stroke="none"
+            strokeWidth={0}
+            style={{ stroke: 'none', strokeWidth: 0 }}
             className={cn(
-              "stroke-gray-800/20 transition-all duration-100 ease-in-out [&:not(:hover)]:duration-1000",
+              "transition-all duration-100 ease-in-out [&:not(:hover)]:duration-3000",
+              // Show color only while hovering or if it's an auto-spark
               hoveredSquare === index && squareColors[index] 
                 ? squareColors[index] 
-                : "fill-transparent",
+                : autoSquares[index]
+                  ? autoSquares[index]
+                  : "fill-transparent",
               squaresClassName,
             )}
             onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={() => setHoveredSquare(null)}
+            onMouseLeave={() => handleMouseLeave(index)}
           />
         )
       })}
