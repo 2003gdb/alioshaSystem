@@ -1,4 +1,3 @@
-import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pattern";
 import Navbar from "@/components/ui/Navbar"
 
 const works = [
@@ -17,13 +16,6 @@ export default function PortfolioPage() {
   return (
     <main className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <Navbar />
-      {/* Interactive grid background */}
-      <div className="absolute inset-0 z-0">
-        <InteractiveGridPattern
-          className="opacity-60 [mask-image:radial-gradient(1400px_circle_at_center,transparent,white)]"
-          squaresClassName="stroke-gray-800/30"
-        />
-      </div>
       <div className="relative z-10 flex flex-col items-center w-full max-w-5xl px-2 md:px-8">
         <div className="w-full flex flex-col items-start md:items-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-2 text-alioshaBlack drop-shadow-lg">

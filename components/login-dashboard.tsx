@@ -38,14 +38,14 @@ export default function LoginDashboard() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-alioshaWhite flex items-center justify-center">
       {/* Background Grid */}
-      <div className="absolute inset-0 z-10">
+      <div className="absolute inset-0 z-0">
         <InteractiveGridPattern
-          className="sm:[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]"
+          className="opacity-50"
         />
       </div>
 
       {/* Login Card */}
-      <div className="relative z-20 w-full max-w-md mx-4">
+      <div className="relative z-20 w-full max-w-md mx-4 z-10">
         <div className="bg-white border border-black rounded-none p-8 shadow-lg">
           {/* Logo */}
           <div className="flex justify-center mb-8">

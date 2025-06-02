@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/ui/Navbar"
 import { FormInput, FormTextarea } from "@/components/ui/form-input";
 import { BorderBeam } from "@/components/magicui/border-beam";
+import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pattern";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -62,14 +63,19 @@ export default function ContactForm() {
   return (
     <section className="relative w-full min-h-screen bg-alioshaWhite px-05 py-10 md:py-20 md:px-30 text-alioshaBlack">
       <Navbar />
-      <div className="container mx-auto px-4">
+      <div className="absolute inset-0 z-0">
+        <InteractiveGridPattern
+          className=" opacity-50 "
+        />
+      </div>
+      <div className="container mx-auto px-4 z-10">
         <div className="text-center py-10">
           <h2 className="text-4xl font-semibold mb-2">Ponte en Contacto</h2>
           <p className="text-base text-alioshaBlack">Contáctanos para comenzar tu proyecto</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="rounded-sm relative p-6 border border-alioshaGrayLight group hover:border-alioshaGrayLight/30 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,0,0,0.1)]">
+          <div className="rounded-sm relative p-6 border border-alioshaGrayLight group hover:border-alioshaGrayLight/30 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,0,0,0.1)] bg-alioshaWhite">
             <h3 className="text-xl font-semibold mb-6">Información de Contacto</h3>
             <div className="space-y-6 text-sm">
               <div className="flex items-start">
