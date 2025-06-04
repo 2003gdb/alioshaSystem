@@ -1,46 +1,24 @@
 "use client";
-import { useState } from "react";
-import { Edit2, Save, X, User, Mail, Phone, MapPin, Briefcase, Calendar, Camera } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { 
+  Edit2, 
+  Save, 
+  X, 
+  Camera, 
+  User as UserIcon, 
+  Mail, 
+  Phone, 
+  Briefcase, 
+  MapPin, 
+  Calendar 
+} from "lucide-react";
+import { UserService } from "@/lib/services/userService";
+import { UserProfile as UserProfileType } from "@/lib/models/User";
 
-// Mock data - replace with actual API calls
-const mockUserData = {
-  id: "1",
-  name: "Carlos Galvez",
-  email: "carlos.galvez@examplee.com",
-  phone: "+52 55 1234 5678",
-  position: "Senior Developer",
-  department: "Tecnología",
-  location: "Ciudad de México, México",
-  joinDate: "2023-03-15",
-  avatar: "/carlos.png"
-};
-
-// API functions - replace with actual implementations
-const userAPI = {
-  async getUser(id: string) {
-    // Simulate API call
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(mockUserData), 500);
-    });
-  },
-  
-  async updateUser(id: string, data: any) {
-    // Simulate API call
-    return new Promise((resolve) => {
-      setTimeout(() => resolve({ ...mockUserData, ...data }), 500);
-    });
-  },
-  
-  async uploadAvatar(id: string, file: File): Promise<string> {
-    // Simulate API call
-    return new Promise((resolve) => {
-      setTimeout(() => resolve("/api/placeholder/150/150"), 1000);
-    });
-  }
-};
-
+console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+console.log('Supabase Key:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'OK' : 'MISSING');
 interface EditableFieldProps {
   label: string;
   value: string;
@@ -53,6 +31,11 @@ interface EditableFieldProps {
 function EditableField({ label, value, field, icon, onSave, isLoading }: EditableFieldProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(value);
+
+  // Actualizar editValue cuando value cambie
+  useEffect(() => {
+    setEditValue(value);
+  }, [value]);
 
   const handleSave = async () => {
     if (editValue.trim() !== value) {
@@ -127,50 +110,163 @@ function EditableField({ label, value, field, icon, onSave, isLoading }: Editabl
 }
 
 export default function UserProfile() {
-  const [userData, setUserData] = useState(mockUserData);
-  const [isLoading, setIsLoading] = useState(false);
+  const [userData, setUserData] = useState<UserProfileType | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [avatarUploading, setAvatarUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleFieldSave = async (field: string, value: string) => {
-    setIsLoading(true);
+  // Cargar datos del usuario al montar el componente
+  useEffect(() => {
+    loadUserData();
+  }, []);
+
+  const loadUserData = async () => {
     try {
-      const updatedUser = await userAPI.updateUser(userData.id, { [field]: value });
-      setUserData(prev => ({ ...prev, [field]: value }));
+      setIsLoading(true);
+      setError(null);
+      
+      const user = await UserService.getCurrentUser();
+      if (user) {
+        setUserData(user);
+      } else {
+        setError("No se pudo cargar la información del usuario");
+      }
     } catch (error) {
-      console.error("Error updating user:", error);
-      // Here you would typically show an error message to the user
+      console.error("Error loading user data:", error);
+      setError("Error al cargar los datos del usuario");
     } finally {
       setIsLoading(false);
     }
   };
 
+  const handleFieldSave = async (field: string, value: string) => {
+    if (!userData) return;
+
+    setIsUpdating(true);
+    try {
+      const updatedUser = await UserService.updateUser(
+        parseInt(userData.id), 
+        { [field]: value }
+      );
+      
+      if (updatedUser) {
+        setUserData(updatedUser);
+      }
+    } catch (error) {
+      console.error("Error updating user:", error);
+      setError("Error al actualizar la información");
+      // Aquí podrías mostrar un toast o notificación de error
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
   const handleAvatarChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (!file) return;
+    if (!file || !userData) return;
 
     setAvatarUploading(true);
     try {
-      const newAvatarUrl = await userAPI.uploadAvatar(userData.id, file) as string;
-      setUserData(prev => ({ ...prev, avatar: newAvatarUrl }));
+      const newAvatarUrl = await UserService.uploadAvatar(parseInt(userData.id), file);
+      setUserData(prev => prev ? { ...prev, avatar: newAvatarUrl } : null);
     } catch (error) {
       console.error("Error uploading avatar:", error);
+      setError("Error al subir la imagen");
     } finally {
       setAvatarUploading(false);
     }
   };
 
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-alioshaWhite flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-alioshaBlue mx-auto mb-4"></div>
+          <p className="text-gray-600">Cargando perfil...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error && !userData) {
+    return (
+      <div className="min-h-screen bg-alioshaWhite flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 mb-4">{error}</p>
+          <Button onClick={loadUserData} className="bg-alioshaBlue hover:bg-blue-700">
+            Reintentar
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!userData) {
+    return (
+      <div className="min-h-screen bg-alioshaWhite flex items-center justify-center">
+        <p className="text-gray-600">No se encontró información del usuario</p>
+      </div>
+    );
+  }
+
   const userFields = [
-    { label: "Nombre Completo", field: "name", value: userData.name, icon: <User className="h-5 w-5 text-gray-600" /> },
-    { label: "Correo Electrónico", field: "email", value: userData.email, icon: <Mail className="h-5 w-5 text-gray-600" /> },
-    { label: "Teléfono", field: "phone", value: userData.phone, icon: <Phone className="h-5 w-5 text-gray-600" /> },
-    { label: "Posición", field: "position", value: userData.position, icon: <Briefcase className="h-5 w-5 text-gray-600" /> },
-    { label: "Departamento", field: "department", value: userData.department, icon: <Briefcase className="h-5 w-5 text-gray-600" /> },
-    { label: "Ubicación", field: "location", value: userData.location, icon: <MapPin className="h-5 w-5 text-gray-600" /> },
+    { 
+      label: "Nombre Completo", 
+      field: "name", 
+      value: userData.name, 
+      icon: <UserIcon className="h-5 w-5 text-gray-600" /> 
+    },
+    { 
+      label: "Correo Electrónico", 
+      field: "email", 
+      value: userData.email, 
+      icon: <Mail className="h-5 w-5 text-gray-600" /> 
+    },
+    { 
+      label: "Teléfono", 
+      field: "phone", 
+      value: userData.phone, 
+      icon: <Phone className="h-5 w-5 text-gray-600" /> 
+    },
+    { 
+      label: "Posición", 
+      field: "position", 
+      value: userData.position, 
+      icon: <Briefcase className="h-5 w-5 text-gray-600" /> 
+    },
+    { 
+      label: "Tipo de Usuario", 
+      field: "department", 
+      value: userData.department, 
+      icon: <Briefcase className="h-5 w-5 text-gray-600" /> 
+    },
+    { 
+      label: "Ubicación", 
+      field: "location", 
+      value: userData.location, 
+      icon: <MapPin className="h-5 w-5 text-gray-600" /> 
+    },
   ];
 
   return (
     <div className="min-h-screen bg-alioshaWhite">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
+        {/* Error banner */}
+        {error && (
+          <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-none">
+            <p className="text-red-600">{error}</p>
+            <button 
+              onClick={() => setError(null)}
+              className="text-red-800 underline text-sm mt-1"
+            >
+              Cerrar
+            </button>
+          </div>
+        )}
+
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-alioshaBlack mb-2">Mi Perfil</h1>
@@ -233,7 +329,7 @@ export default function UserProfile() {
                 field={field.field}
                 icon={field.icon}
                 onSave={handleFieldSave}
-                isLoading={isLoading}
+                isLoading={isUpdating}
               />
             ))}
           </div>
@@ -243,6 +339,13 @@ export default function UserProfile() {
         <div className="mt-8 flex flex-wrap gap-4">
           <Button className="bg-alioshaBlue hover:bg-blue-700">
             Cambiar Contraseña
+          </Button>
+          <Button 
+            onClick={loadUserData}
+            disabled={isLoading}
+            className="bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300"
+          >
+            Recargar Datos
           </Button>
         </div>
       </div>
