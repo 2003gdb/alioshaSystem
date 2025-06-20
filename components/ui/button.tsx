@@ -54,7 +54,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {...props}
         >
           {children}
-          <div className="hover-icon w-0 opacity-0 transition-all duration-400 ml-2">
+          <div className="hover-icon w-0 opacity-0 transition-all duration-300 ml-2">
             <HoverIconComponent className="h-8 w-8" />
           </div>
         </Comp>
